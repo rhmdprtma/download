@@ -7,71 +7,83 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',system-ui,sans-serif}
-body{background:#0b0218;background:radial-gradient(1000px 600px at 20% 0%, #2a0a4a 0%, #0b0218 55%, #05010f 100%);color:#fff;min-height:100vh;padding-bottom:50px}
-header{max-width:920px;margin:0 auto;padding:30px 16px 8px;text-align:center}
-.logo{width:68px;height:68px;background:linear-gradient(135deg,#a855f7,#6d28d9);border-radius:20px;display:grid;place-items:center;font-size:30px;margin:0 auto 12px;box-shadow:0 0 30px rgba(168,85,247,.6);transform:rotate(-4deg);border:1px solid rgba(255,255,255,.25)}
+:root{--bg1:#2a0a4a;--bg2:#0b0218;--card:rgba(20,5,40,.85);--cardBorder:rgba(168,85,247,.3);--input:#0a021a;--text:#fff;--muted:#c4b5fd;--muted2:#a78bfa;--chip:rgba(255,255,255,.06);--chipBorder:rgba(255,255,255,.12)}
+body.light{--bg1:#e9d5ff;--bg2:#f5f3ff;--card:#ffffff;--cardBorder:#d8b4fe;--input:#f5f3ff;--text:#1e0a3a;--muted:#6d28d9;--muted2:#7c3aed;--chip:#f3e8ff;--chipBorder:#e9d5ff}
+body{background:var(--bg2);background:radial-gradient(1000px 600px at 20% 0%, var(--bg1) 0%, var(--bg2) 55%, var(--bg2) 100%);color:var(--text);min-height:100vh;padding-bottom:50px;transition:.35s}
+header{max-width:920px;margin:0 auto;padding:30px 16px 8px;text-align:center;position:relative}
+.topbar{display:flex;justify-content:space-between;align-items:center;max-width:920px;margin:0 auto;padding:14px 16px 0}
+.themeBtn{border:1px solid var(--cardBorder);background:var(--card);color:var(--text);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:800;font-size:12px;display:flex;gap:8px;align-items:center;transition:.25s}
+.themeBtn:hover{transform:scale(1.05)}
+.themeBtn i{font-size:16px;color:#a855f7}
+.authorPill{font-size:11px;font-weight:800;color:var(--muted);border:1px solid var(--cardBorder);background:var(--card);padding:9px 12px;border-radius:999px}
+.logo{width:68px;height:68px;background:linear-gradient(135deg,#a855f7,#6d28d9);border-radius:20px;display:grid;place-items:center;font-size:30px;margin:0 auto 12px;box-shadow:0 0 30px rgba(168,85,247,.6);transform:rotate(-4deg);border:1px solid rgba(255,255,255,.25);color:#fff}
 h1{font-size:30px;font-weight:900;letter-spacing:-.5px}
-h1 span{background:linear-gradient(90deg,#e9d5ff,#a855f7);color:#fff;padding:2px 10px;border-radius:10px}
-.sub{color:#c4b5fd;font-size:13px;margin-top:9px}
-.sub b{color:#fff}
+h1 span{background:linear-gradient(90deg,#a855f7,#6d28d9);color:#fff;padding:2px 10px;border-radius:10px}
+.sub{color:var(--muted);font-size:13px;margin-top:9px}
+.sub b{color:var(--text)}
 .wrap{max-width:920px;margin:18px auto;padding:0 16px}
 .tabs{display:flex;gap:9px;overflow-x:auto;padding:6px 2px 12px;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
-.tab{flex-shrink:0;display:flex;align-items:center;gap:8px;padding:11px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);backdrop-filter:blur(8px);color:#e9d5ff;cursor:pointer;font-size:13px;font-weight:700;transition:.25s}
+.tab{flex-shrink:0;display:flex;align-items:center;gap:8px;padding:11px 16px;border-radius:999px;border:1px solid var(--chipBorder);background:var(--chip);color:var(--muted);cursor:pointer;font-size:13px;font-weight:700;transition:.25s}
 .tab i{font-size:17px}
 .tab:hover{transform:translateY(-3px) scale(1.02)}
-.tab.active{transform:scale(1.05);color:#fff;border-color:transparent;box-shadow:0 10px 25px rgba(0,0,0,.5)}
-/* WARNA PER APLIKASI */
+.tab.active{transform:scale(1.05);color:#fff;border-color:transparent;box-shadow:0 10px 25px rgba(0,0,0,.3)}
 .tab[data-id="tiktok"].active{background:#000;box-shadow:0 0 0 2px #fe2c55,0 10px 25px rgba(254,44,85,.4)}
 .tab[data-id="instagram"].active{background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5)}
 .tab[data-id="spotify"].active{background:#1db954;color:#000}
-.tab[data-id="apple"].active{background:#fff;color:#000}
-.tab[data-id="capcut"].active{background:#111;box-shadow:0 0 0 2px #fff}
+.tab[data-id="apple"].active{background:#fff;color:#000;border:1px solid #ddd}
+.tab[data-id="capcut"].active{background:#111;box-shadow:0 0 0 2px #999}
 .tab[data-id="pinterest"].active{background:#e60023}
 .tab[data-id="mediafire"].active{background:#1299f3}
-.card{background:rgba(20,5,40,.85);border:1px solid rgba(168,85,247,.3);border-radius:24px;padding:18px;box-shadow:0 20px 50px rgba(0,0,0,.6);backdrop-filter:blur(10px);animation:fade .4s ease}
+.card{background:var(--card);border:1px solid var(--cardBorder);border-radius:24px;padding:18px;box-shadow:0 20px 50px rgba(0,0,0,.25);animation:fade .4s ease;transition:.35s}
 @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.inputBox{display:flex;gap:10px;background:#0a021a;border:1px solid rgba(168,85,247,.4);border-radius:15px;padding:6px 6px 6px 14px;align-items:center}
+.inputBox{display:flex;gap:10px;background:var(--input);border:1px solid var(--cardBorder);border-radius:15px;padding:6px 6px 6px 14px;align-items:center}
 .inputBox:focus-within{border-color:#a855f7;box-shadow:0 0 0 3px rgba(168,85,247,.25)}
-.inputBox i{color:#c4b5fd}
-.inputBox input{flex:1;background:transparent;border:none;outline:none;color:#fff;font-size:14px;min-width:0}
+.inputBox i{color:var(--muted)}
+.inputBox input{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-size:14px;min-width:0}
 .btn{border:none;cursor:pointer;border-radius:12px;padding:12px 18px;font-weight:800;font-size:13px;display:flex;align-items:center;gap:8px;transition:.2s;white-space:nowrap}
 .btn-main{background:linear-gradient(90deg,#a855f7,#7c3aed);color:#fff}
 .btn-main:hover{transform:scale(1.04);box-shadow:0 8px 20px rgba(168,85,247,.5)}
-.btn-ghost{background:rgba(255,255,255,.1);color:#fff}
+.btn-ghost{background:var(--chip);color:var(--text);border:1px solid var(--chipBorder)}
 .examples{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
-.examples button{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#d8b4fe;padding:7px 11px;border-radius:999px;font-size:11px;cursor:pointer}
-.examples button:hover{color:#fff;border-color:#a855f7}
-.status{margin-top:14px;display:none;align-items:center;gap:10px;font-size:13px;color:#e9d5ff}
+.examples button{background:var(--chip);border:1px solid var(--cardBorder);color:var(--muted);padding:7px 11px;border-radius:999px;font-size:11px;cursor:pointer}
+.examples button:hover{color:var(--text);border-color:#a855f7}
+.status{margin-top:14px;display:none;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
 .status.show{display:flex}
-.spinner{width:18px;height:18px;border:2px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+.spinner{width:18px;height:18px;border:2px solid rgba(128,128,128,.3);border-top-color:#a855f7;border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .result{margin-top:16px;display:none}
 .result.show{display:block;animation:fade .4s ease}
-.resultCard{display:flex;gap:14px;background:#0a021a;border:1px solid rgba(168,85,247,.25);border-radius:18px;padding:14px}
+.resultCard{display:flex;gap:14px;background:var(--input);border:1px solid var(--cardBorder);border-radius:18px;padding:14px}
 .resultCard img{width:112px;height:112px;object-fit:cover;border-radius:14px;background:#2a0a4a;flex-shrink:0}
 .r-info{flex:1;min-width:0}
 .r-info h3{font-size:16px;line-height:1.3}
-.r-info p{font-size:12px;color:#c4b5fd;margin-top:5px;line-height:1.5}
+.r-info p{font-size:12px;color:var(--muted);margin-top:5px;line-height:1.5}
 .badge{display:inline-block;background:#a855f7;color:#fff;font-size:10px;font-weight:800;padding:4px 9px;border-radius:999px;margin-top:2px;margin-bottom:8px}
-.badge.tiktok{background:#fe2c55}.badge.ig{background:linear-gradient(45deg,#fa7e1e,#d62976)}.badge.spotify{background:#1db954;color:#000}.badge.apple{background:#fff;color:#000}.badge.capcut{background:#fff;color:#000}.badge.pin{background:#e60023}.badge.mf{background:#1299f3}
+.badge.tiktok{background:#fe2c55}.badge.ig{background:linear-gradient(45deg,#fa7e1e,#d62976)}.badge.spotify{background:#1db954;color:#000}.badge.apple{background:#fff;color:#000;border:1px solid #ddd}.badge.capcut{background:#111;color:#fff}.badge.pin{background:#e60023}.badge.mf{background:#1299f3}
 .dlGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
 @media(max-width:600px){.dlGrid{grid-template-columns:1fr}.resultCard{flex-direction:column}.resultCard img{width:100%;height:180px}.inputBox{flex-wrap:wrap}.inputBox input{flex-basis:100%;padding:8px 0}}
 .dlBtn{display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;padding:14px;border-radius:13px;font-weight:800;font-size:13px;transition:.2s;color:#fff;background:linear-gradient(90deg,#a855f7,#7c3aed)}
 .dlBtn:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(168,85,247,.4)}
 .dlBtn.tiktok{background:#000;border:2px solid #fe2c55}.dlBtn.ig{background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf)}.dlBtn.spotify{background:#1db954;color:#000}.dlBtn.apple{background:#fff;color:#000}.dlBtn.capcut{background:#fff;color:#000}.dlBtn.pin{background:#e60023}.dlBtn.mf{background:#1299f3}
-.dlBtn.outline{background:transparent;border:1px solid rgba(255,255,255,.25)}
-audio{width:100%;margin-top:12px;filter:invert(1) hue-rotate(260deg)}
+.dlBtn.outline{background:transparent;border:1px solid var(--cardBorder);color:var(--text)}
+audio{width:100%;margin-top:12px}
+body.light audio{filter:none} body:not(.light) audio{filter:invert(1) hue-rotate(260deg)}
 .gridMedia{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:12px}
-.gridMedia a{display:block;border-radius:14px;overflow:hidden;border:1px solid rgba(168,85,247,.3);position:relative}
+.gridMedia a{display:block;border-radius:14px;overflow:hidden;border:1px solid var(--cardBorder);position:relative}
 .gridMedia img,.gridMedia video{width:100%;height:160px;object-fit:cover;display:block}
 .gridMedia span{position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,.75);color:#fff;font-size:11px;padding:5px 8px;border-radius:999px}
-.error{background:rgba(255,0,0,.12);border:1px solid #ff5555;color:#ffb3b3;padding:12px;border-radius:12px;font-size:13px;margin-top:14px;display:none}
+.error{background:rgba(255,0,0,.12);border:1px solid #ff5555;color:#ff5555;padding:12px;border-radius:12px;font-size:13px;margin-top:14px;display:none}
 .error.show{display:block}
-footer{text-align:center;color:#a78bfa;font-size:11px;margin-top:28px;line-height:1.6}
+footer{text-align:center;color:var(--muted2);font-size:11px;margin-top:28px;line-height:1.6}
+.feat{border-radius:16px;padding:14px;text-align:center;border:1px solid var(--cardBorder);background:var(--chip)}
 </style>
 </head>
 <body>
+<div class="topbar">
+  <div class="authorPill"><i class="fa-solid fa-crown" style="color:#a855f7"></i> Tama-ID</div>
+  <button class="themeBtn" id="themeBtn" onclick="toggleTheme()"><i id="themeIcon" class="fa-solid fa-sun"></i><span id="themeText">Light</span></button>
+</div>
 <header>
   <div class="logo"><i class="fa-solid fa-cloud-arrow-down"></i></div>
   <h1>All-In-One <span>Downloader</span></h1>
@@ -94,15 +106,26 @@ footer{text-align:center;color:#a78bfa;font-size:11px;margin-top:28px;line-heigh
   </div>
 
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px">
-    <div style="background:rgba(255,255,255,.06);border:1px solid rgba(168,85,247,.3);border-radius:16px;padding:14px;text-align:center"><i class="fa-solid fa-bolt" style="font-size:20px;color:#a855f7"></i><p style="font-size:12px;margin-top:8px;font-weight:700">Super Cepat</p><p style="font-size:11px;color:#c4b5fd">Server Tama-ID</p></div>
-    <div style="background:#a855f7;border-radius:16px;padding:14px;text-align:center"><i class="fa-solid fa-shield-halved" style="font-size:20px"></i><p style="font-size:12px;margin-top:8px;font-weight:700">No Watermark</p><p style="font-size:11px;color:#e9d5ff">Bersih & HD</p></div>
-    <div style="background:rgba(255,255,255,.06);border:1px solid rgba(168,85,247,.3);border-radius:16px;padding:14px;text-align:center"><i class="fa-solid fa-mobile-screen" style="font-size:20px;color:#a855f7"></i><p style="font-size:12px;margin-top:8px;font-weight:700">100% Mobile</p><p style="font-size:11px;color:#c4b5fd">Ungu Hitam Premium</p></div>
+    <div class="feat"><i class="fa-solid fa-bolt" style="font-size:20px;color:#a855f7"></i><p style="font-size:12px;margin-top:8px;font-weight:700">Super Cepat</p><p style="font-size:11px;color:var(--muted)">Server Tama-ID</p></div>
+    <div class="feat" style="background:#a855f7;color:#fff"><i class="fa-solid fa-shield-halved" style="font-size:20px"></i><p style="font-size:12px;margin-top:8px;font-weight:700">No Watermark</p><p style="font-size:11px;color:#e9d5ff">Bersih & HD</p></div>
+    <div class="feat"><i class="fa-solid fa-circle-half-stroke" style="font-size:20px;color:#a855f7"></i><p style="font-size:12px;margin-top:8px;font-weight:700">Dark / Light Ungu</p><p style="font-size:11px;color:var(--muted)">Klik matahari di atas</p></div>
   </div>
-  <footer>All-In-One Downloader<br>Author: <b style="color:#fff">Tama-ID</b> • © 2026 Tama-ID • All Rights Reserved</footer>
+  <footer>All-In-One Downloader<br>Author: <b style="color:var(--text)">Tama-ID</b> • © 2026 Tama-ID • All Rights Reserved</footer>
 </div>
 
 <script>
 const AUTHOR = "Tama-ID";
+// THEME TOGGLE - DARK UNGU / LIGHT UNGU
+function applyTheme(isLight){
+  document.body.classList.toggle('light', isLight);
+  document.getElementById('themeIcon').className = isLight ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+  document.getElementById('themeText').textContent = isLight ? 'Dark' : 'Light';
+  localStorage.setItem('tama-theme', isLight ? 'light' : 'dark');
+}
+function toggleTheme(){ const isLight = !document.body.classList.contains('light'); applyTheme(isLight); }
+// load saved theme
+applyTheme(localStorage.getItem('tama-theme')==='light');
+
 const PLATFORMS=[
  {id:'tiktok', name:'TikTok', icon:'fa-brands fa-tiktok', api:'https://api.nexadev.my.id/api/snaptik/?url=', example:'https://vt.tiktok.com/ZSXXAnbkc/', cls:'tiktok', hint:'Link TikTok video'},
  {id:'instagram', name:'Instagram', icon:'fa-brands fa-instagram', api:'https://api.nexadev.my.id/api/sanapsave?url=', example:'https://www.instagram.com/p/DfvoTYkSoqa/', cls:'ig', hint:'Link IG Post / Reels'},
@@ -120,7 +143,7 @@ PLATFORMS.forEach((p,i)=>{
   b.onclick=()=>{ active=p; document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active')); b.classList.add('active'); document.getElementById('urlInput').placeholder=p.hint+'...'; renderExamples(); document.getElementById('result').classList.remove('show'); };
   tabsEl.appendChild(b);
 });
-function renderExamples(){ document.getElementById('examples').innerHTML=`<button onclick="useExample()"><i class="fa-solid fa-wand-magic-sparkles"></i> Coba contoh ${active.name}</button><span style="font-size:11px;color:#a78bfa">Auto-detect ON • Author: ${AUTHOR}</span>`; }
+function renderExamples(){ document.getElementById('examples').innerHTML=`<button onclick="useExample()"><i class="fa-solid fa-wand-magic-sparkles"></i> Coba contoh ${active.name}</button><span style="font-size:11px;color:var(--muted2)">Auto-detect ON • Author: ${AUTHOR}</span>`; }
 renderExamples();
 function useExample(){ document.getElementById('urlInput').value=active.example; doDownload(); }
 async function pasteLink(){ try{ const t=await navigator.clipboard.readText(); if(t){ document.getElementById('urlInput').value=t; autoDetect(t);} }catch(e){ document.getElementById('urlInput').focus(); } }
@@ -144,45 +167,24 @@ function showError(m){ const b=document.getElementById('errorBox'); b.textConten
 function hideError(){ document.getElementById('errorBox').classList.remove('show'); }
 function setLoading(on,txt){ document.getElementById('status').classList.toggle('show',on); if(txt) document.getElementById('statusText').textContent=txt; document.getElementById('dlBtn').innerHTML=on?'<div class="spinner" style="width:16px;height:16px"></div> Loading...':'<i class="fa-solid fa-download"></i> Download'; }
 function esc(s){ return String(s||'').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-// NORMALISASI: ubah author NexaDev -> Tama-ID, convert JSON ke format kita
-function normalize(j){
-  if(j) { j.author = AUTHOR; if(j.data) j.data.author = AUTHOR; }
-  return j;
-}
+function normalize(j){ if(j){ j.author=AUTHOR; if(j.data) j.data.author=AUTHOR; } return j; }
 async function doDownload(){
   const input=document.getElementById('urlInput'); let url=input.value.trim();
   if(!url){ showError('Paste link dulu bung!'); return; }
   if(!url.startsWith('http')) url='https://'+url;
   autoDetect(url); hideError(); setLoading(true,'Mengambil data dari '+active.name+' • by '+AUTHOR+'...');
-  try{
-    let j=await fetchJSON(active.api+encodeURIComponent(url));
-    j=normalize(j);
-    setLoading(false); renderResult(j);
-  }catch(err){ setLoading(false); showError('Gagal ambil data. Coba lagi / cek linknya.'); }
+  try{ let j=await fetchJSON(active.api+encodeURIComponent(url)); j=normalize(j); setLoading(false); renderResult(j); }
+  catch(err){ setLoading(false); showError('Gagal ambil data. Coba lagi / cek linknya.'); }
 }
 function renderResult(j){
   const box=document.getElementById('result'); box.classList.add('show'); let html='';
-  if(active.id==='tiktok'){
-    html=`<div class="resultCard"><img src="${j.thumbnail}"><div class="r-info"><span class="badge tiktok">TIKTOK • by ${AUTHOR}</span><h3>${esc(j.title||'TikTok Video')}</h3><p>No Watermark • HD</p></div></div><div class="dlGrid">${(j.download_links||[]).map(l=>`<a class="dlBtn ${l.type.includes('MP3')?'outline':''} tiktok" href="${l.url}" target="_blank" download><i class="fa-solid ${l.type.includes('MP3')?'fa-music':'fa-video'}"></i> ${esc(l.type)}</a>`).join('')}</div>`;
-  } else if(active.id==='instagram'){
-    const vids=j.media?.video||[], imgs=j.media?.image||[]; const all=[...vids.map(v=>({...v,kind:'video'})),...imgs.map(v=>({...v,kind:'image'}))];
-    html=`<div class="resultCard"><div class="r-info"><span class="badge ig">INSTAGRAM • ${all.length} MEDIA • by ${AUTHOR}</span><h3>${esc(j.meta?.caption||'Instagram Post')}</h3><p>@${esc(j.meta?.author||'media')} • ${vids.length} Video • ${imgs.length} Foto</p></div></div><div class="gridMedia">${all.map(m=> m.kind==='video'?`<a href="${m.url}" target="_blank" download><video src="${m.url}" preload="metadata"></video><span><i class="fa-solid fa-play"></i> Video</span></a>`:`<a href="${m.url}" target="_blank" download><img src="${m.url}"><span><i class="fa-solid fa-image"></i> Foto</span></a>`).join('')}</div>`;
-  } else if(active.id==='apple'){
-    const d=j.data||{};
-    html=`<div class="resultCard"><img src="${d.thumbnail}"><div class="r-info"><span class="badge apple">APPLE MUSIC • by ${AUTHOR}</span><h3>${esc(d.title)}</h3><p>${esc(d.album||'')} • ${esc(d.published||'')}</p></div></div>${d.preview?`<audio controls src="${d.preview}"></audio>`:''}<div class="dlGrid"><a class="dlBtn apple" href="${d.audio?.url}" target="_blank" download><i class="fa-solid fa-music"></i> Download MP3 • ${esc(d.audio?.size||'')}</a><a class="dlBtn outline" href="${d.preview}" target="_blank"><i class="fa-solid fa-play"></i> Preview</a></div>`;
-  } else if(active.id==='spotify'){
-    const d=j.data||{};
-    html=`<div class="resultCard"><img src="${d.thumbnail}"><div class="r-info"><span class="badge spotify">SPOTIFY • ${esc(d.duration||'')} • by ${AUTHOR}</span><h3>${esc(d.title)}</h3><p>Artist: ${esc(d.artist||'-')}</p></div></div>${d.preview?`<audio controls src="${d.preview}"></audio>`:''}<div class="dlGrid"><a class="dlBtn spotify" href="${d.url}" target="_blank" download><i class="fa-solid fa-download"></i> Download MP3 Full</a><a class="dlBtn outline" href="${d.preview}" target="_blank"><i class="fa-solid fa-play"></i> Preview</a></div>`;
-  } else if(active.id==='capcut'){
-    const d=j.data||{};
-    html=`<div class="resultCard"><div class="r-info"><span class="badge capcut">CAPCUT • by ${AUTHOR}</span><h3>${esc(j.caption||'CapCut Video')}</h3><p>Template tanpa watermark</p></div></div><div class="dlGrid"><a class="dlBtn capcut" href="${d.url}" target="_blank" download><i class="fa-solid fa-video"></i> Download No WM</a></div>`;
-  } else if(active.id==='pinterest'){
-    const arr=Array.isArray(j.data)?j.data:[];
-    html=`<div class="resultCard"><div class="r-info"><span class="badge pin">PINTEREST • ${arr.length} GAMBAR • by ${AUTHOR}</span><h3>Pinterest Image</h3><p>Resolusi asli</p></div></div><div class="gridMedia">${arr.map(im=>`<a href="${im.url}" target="_blank" download><img src="${im.url}"><span>${im.width}x${im.height}</span></a>`).join('')}</div>`;
-  } else if(active.id==='mediafire'){
-    const d=j.data||{};
-    html=`<div class="resultCard"><div class="r-info"><span class="badge mf">MEDIAFIRE • ${esc(d.size||'')} • by ${AUTHOR}</span><h3>${esc(d.title)}</h3><p>Type: ${esc(d.mime||'')} • ${esc(d.extension||'')}</p></div></div><div class="dlGrid"><a class="dlBtn mf" href="${d.url}" target="_blank" download><i class="fa-solid fa-file-arrow-down"></i> Download • ${esc(d.size)}</a></div>`;
-  }
+  if(active.id==='tiktok'){ html=`<div class="resultCard"><img src="${j.thumbnail}"><div class="r-info"><span class="badge tiktok">TIKTOK • by ${AUTHOR}</span><h3>${esc(j.title||'TikTok Video')}</h3><p>No Watermark • HD</p></div></div><div class="dlGrid">${(j.download_links||[]).map(l=>`<a class="dlBtn ${l.type.includes('MP3')?'outline':''} tiktok" href="${l.url}" target="_blank" download><i class="fa-solid ${l.type.includes('MP3')?'fa-music':'fa-video'}"></i> ${esc(l.type)}</a>`).join('')}</div>`; }
+  else if(active.id==='instagram'){ const vids=j.media?.video||[], imgs=j.media?.image||[]; const all=[...vids.map(v=>({...v,kind:'video'})),...imgs.map(v=>({...v,kind:'image'}))]; html=`<div class="resultCard"><div class="r-info"><span class="badge ig">INSTAGRAM • ${all.length} MEDIA • by ${AUTHOR}</span><h3>${esc(j.meta?.caption||'Instagram Post')}</h3><p>@${esc(j.meta?.author||'media')} • ${vids.length} Video • ${imgs.length} Foto</p></div></div><div class="gridMedia">${all.map(m=> m.kind==='video'?`<a href="${m.url}" target="_blank" download><video src="${m.url}" preload="metadata"></video><span><i class="fa-solid fa-play"></i> Video</span></a>`:`<a href="${m.url}" target="_blank" download><img src="${m.url}"><span><i class="fa-solid fa-image"></i> Foto</span></a>`).join('')}</div>`; }
+  else if(active.id==='apple'){ const d=j.data||{}; html=`<div class="resultCard"><img src="${d.thumbnail}"><div class="r-info"><span class="badge apple">APPLE MUSIC • by ${AUTHOR}</span><h3>${esc(d.title)}</h3><p>${esc(d.album||'')} • ${esc(d.published||'')}</p></div></div>${d.preview?`<audio controls src="${d.preview}"></audio>`:''}<div class="dlGrid"><a class="dlBtn apple" href="${d.audio?.url}" target="_blank" download><i class="fa-solid fa-music"></i> Download MP3 • ${esc(d.audio?.size||'')}</a><a class="dlBtn outline" href="${d.preview}" target="_blank"><i class="fa-solid fa-play"></i> Preview</a></div>`; }
+  else if(active.id==='spotify'){ const d=j.data||{}; html=`<div class="resultCard"><img src="${d.thumbnail}"><div class="r-info"><span class="badge spotify">SPOTIFY • ${esc(d.duration||'')} • by ${AUTHOR}</span><h3>${esc(d.title)}</h3><p>Artist: ${esc(d.artist||'-')}</p></div></div>${d.preview?`<audio controls src="${d.preview}"></audio>`:''}<div class="dlGrid"><a class="dlBtn spotify" href="${d.url}" target="_blank" download><i class="fa-solid fa-download"></i> Download MP3 Full</a><a class="dlBtn outline" href="${d.preview}" target="_blank"><i class="fa-solid fa-play"></i> Preview</a></div>`; }
+  else if(active.id==='capcut'){ const d=j.data||{}; html=`<div class="resultCard"><div class="r-info"><span class="badge capcut">CAPCUT • by ${AUTHOR}</span><h3>${esc(j.caption||'CapCut Video')}</h3><p>Template tanpa watermark</p></div></div><div class="dlGrid"><a class="dlBtn capcut" href="${d.url}" target="_blank" download><i class="fa-solid fa-video"></i> Download No WM</a></div>`; }
+  else if(active.id==='pinterest'){ const arr=Array.isArray(j.data)?j.data:[]; html=`<div class="resultCard"><div class="r-info"><span class="badge pin">PINTEREST • ${arr.length} GAMBAR • by ${AUTHOR}</span><h3>Pinterest Image</h3><p>Resolusi asli</p></div></div><div class="gridMedia">${arr.map(im=>`<a href="${im.url}" target="_blank" download><img src="${im.url}"><span>${im.width}x${im.height}</span></a>`).join('')}</div>`; }
+  else if(active.id==='mediafire'){ const d=j.data||{}; html=`<div class="resultCard"><div class="r-info"><span class="badge mf">MEDIAFIRE • ${esc(d.size||'')} • by ${AUTHOR}</span><h3>${esc(d.title)}</h3><p>Type: ${esc(d.mime||'')} • ${esc(d.extension||'')}</p></div></div><div class="dlGrid"><a class="dlBtn mf" href="${d.url}" target="_blank" download><i class="fa-solid fa-file-arrow-down"></i> Download • ${esc(d.size)}</a></div>`; }
   box.innerHTML=html;
 }
 </script>
