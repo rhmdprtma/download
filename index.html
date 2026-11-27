@@ -96,6 +96,7 @@ footer{text-align:center;color:var(--muted2);font-size:11px;margin-top:28px;line
       <button type="button" class="btn btn-main" id="dlBtn" onclick="doDownload()"><i class="fa-solid fa-download"></i> Download</button>
     </div>
     <div class="examples" id="examples"></div>
+    <p style="font-size:11px;color:var(--muted);margin-top:10px">iPhone: file masuk ke Files > Download > Share > Save Video • Android: langsung masuk Galeri</p>
     <div class="status" id="status"><div class="spinner"></div><span id="statusText">Menghubungkan...</span></div>
     <div class="progress" id="progress"><i id="progressBar"></i></div>
     <div class="error" id="errorBox"></div>
@@ -218,6 +219,9 @@ function renderExamples() {
   });
 }
 renderExamples();
+$("urlInput").addEventListener("keydown", e => {
+  if(e.key === "Enter") doDownload();
+});
 
 function detectPlatform(rawURL) {
   let parsed;
