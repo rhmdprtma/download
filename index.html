@@ -7,18 +7,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',system-ui,-apple-system,sans-serif;-webkit-tap-highlight-color:transparent}
-:root{--bg:#0a0a0a;--bg2:#111;--card:#161616;--card2:#1e1e1e;--border:#2a2a2a;--text:#fff;--muted:#a1a1a1;--muted2:#717171;--input:#0a0a0a;--chip:#1e1e1e;--btn:#fff;--btnText:#000}
-body.light{--bg:#f4f4f5;--bg2:#fff;--card:#fff;--card2:#fafafa;--border:#e4e4e7;--text:#09090b;--muted:#52525b;--muted2:#71717a;--input:#f4f4f5;--chip:#fff;--btn:#000;--btnText:#fff}
+:root{--bg:#0a0612;--bg2:#120a20;--card:#160b28;--card2:#1d0f35;--border:#2e1a52;--text:#fff;--muted:#c4b5e0;--muted2:#8b7ab0;--input:#0a0612;--chip:#1d0f35;--btn:#a855f7;--btnText:#fff;--purple:#a855f7;--purple2:#7c3aed;--purple3:#c084fc}
+body.light{--bg:#f3efff;--bg2:#fff;--card:#fff;--card2:#f5f0ff;--border:#ddd0f5;--text:#1a0b2e;--muted:#5b4a7a;--muted2:#8b7ab0;--input:#f3efff;--chip:#fff;--btn:#7c3aed;--btnText:#fff}
 body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:40px;transition:.3s}
 .topbar{max-width:920px;margin:0 auto;padding:16px;display:flex;justify-content:space-between;align-items:center}
 .pill{border:1px solid var(--border);background:var(--card);padding:9px 13px;border-radius:999px;font-size:11px;font-weight:800;display:flex;gap:7px;align-items:center}
 .themeBtn{border:1px solid var(--border);background:var(--card);color:var(--text);padding:10px 15px;border-radius:999px;cursor:pointer;font-weight:800;font-size:12px;display:flex;gap:8px;align-items:center;transition:.2s}
 .themeBtn:active{transform:scale(.95)}
 header{max-width:920px;margin:0 auto;padding:10px 16px;text-align:center}
-.logo{width:70px;height:70px;background:var(--text);color:var(--bg);border-radius:20px;display:grid;place-items:center;font-size:30px;margin:0 auto 14px;transform:rotate(-4deg);box-shadow:0 15px 30px rgba(0,0,0,.3)}
-body.light .logo{box-shadow:0 15px 30px rgba(0,0,0,.15)}
+.logo{width:70px;height:70px;background:linear-gradient(135deg,#a855f7,#7c3aed,#4c1d95);color:#fff;border-radius:20px;display:grid;place-items:center;font-size:30px;margin:0 auto 14px;transform:rotate(-4deg);box-shadow:0 15px 30px rgba(168,85,247,.4)}
+body.light .logo{box-shadow:0 15px 30px rgba(124,58,237,.25)}
 h1{font-size:32px;font-weight:900;letter-spacing:-1px;line-height:1}
-h1 span{background:var(--text);color:var(--bg);padding:2px 12px;border-radius:10px}
+h1 span{background:linear-gradient(135deg,#a855f7,#7c3aed);color:#fff;padding:2px 12px;border-radius:10px}
 .sub{color:var(--muted);font-size:13px;margin-top:12px;line-height:1.6}
 .sub b{color:var(--text)}
 .wrap{max-width:920px;margin:18px auto;padding:0 16px}
@@ -27,26 +27,26 @@ h1 span{background:var(--text);color:var(--bg);padding:2px 12px;border-radius:10
 .tab{flex-shrink:0;display:flex;align-items:center;gap:8px;padding:11px 16px;border-radius:999px;border:1px solid var(--border);background:var(--chip);color:var(--muted);cursor:pointer;font-size:13px;font-weight:700;transition:.25s}
 .tab i{font-size:16px}
 .tab:hover{transform:translateY(-2px)}
-.tab.active{background:var(--text);color:var(--bg);border-color:var(--text);transform:scale(1.04);box-shadow:0 8px 20px rgba(0,0,0,.3)}
-.card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:18px;box-shadow:0 10px 40px rgba(0,0,0,.2);animation:fade .35s ease}
+.tab.active{background:linear-gradient(135deg,#a855f7,#7c3aed);color:#fff;border-color:#a855f7;transform:scale(1.04);box-shadow:0 8px 20px rgba(168,85,247,.4)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:18px;box-shadow:0 10px 40px rgba(0,0,0,.3);animation:fade .35s ease}
 @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @keyframes pop{0%{transform:scale(.95)}100%{transform:scale(1)}}
 .inputBox{display:flex;gap:10px;background:var(--input);border:1px solid var(--border);border-radius:16px;padding:6px 6px 6px 14px;align-items:center}
-.inputBox:focus-within{border-color:var(--text);box-shadow:0 0 0 3px rgba(128,128,128,.2)}
+.inputBox:focus-within{border-color:var(--purple);box-shadow:0 0 0 3px rgba(168,85,247,.25)}
 .inputBox input{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-size:14px;min-width:0}
 .btn{border:none;cursor:pointer;border-radius:12px;padding:12px 16px;font-weight:800;font-size:13px;display:flex;align-items:center;gap:8px;transition:.2s;white-space:nowrap}
 .btn:active{transform:scale(.96)}
-.btn-main{background:var(--text);color:var(--bg)}
+.btn-main{background:linear-gradient(135deg,#a855f7,#7c3aed);color:#fff}
 .btn-ghost{background:var(--chip);color:var(--text);border:1px solid var(--border)}
 .examples{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
 .examples button{background:var(--chip);border:1px solid var(--border);color:var(--muted);padding:7px 11px;border-radius:999px;font-size:11px;cursor:pointer}
 .status{margin-top:14px;display:none;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
 .status.show{display:flex}
-.spinner{width:18px;height:18px;border:2px solid var(--border);border-top-color:var(--text);border-radius:50%;animation:spin .7s linear infinite}
+.spinner{width:18px;height:18px;border:2px solid var(--border);border-top-color:var(--purple);border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .progress{height:6px;background:var(--border);border-radius:999px;overflow:hidden;margin-top:10px;display:none}
 .progress.show{display:block}
-.progress i{display:block;height:100%;width:0%;background:var(--text);transition:.3s}
+.progress i{display:block;height:100%;width:0%;background:linear-gradient(90deg,#a855f7,#7c3aed);transition:.3s}
 .result{margin-top:16px;display:none}
 .result.show{display:block;animation:pop .35s ease}
 .resultCard{display:flex;gap:14px;background:var(--card2);border:1px solid var(--border);border-radius:18px;padding:14px}
@@ -54,10 +54,10 @@ h1 span{background:var(--text);color:var(--bg);padding:2px 12px;border-radius:10
 .r-info{flex:1;min-width:0}
 .r-info h3{font-size:16px;line-height:1.35}
 .r-info p{font-size:12px;color:var(--muted);margin-top:5px;line-height:1.5}
-.badge{display:inline-block;background:var(--text);color:var(--bg);font-size:10px;font-weight:800;padding:5px 10px;border-radius:999px;margin-bottom:8px;letter-spacing:.5px}
+.badge{display:inline-block;background:linear-gradient(135deg,#a855f7,#7c3aed);color:#fff;font-size:10px;font-weight:800;padding:5px 10px;border-radius:999px;margin-bottom:8px;letter-spacing:.5px}
 .dlGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
 @media(max-width:600px){.dlGrid{grid-template-columns:1fr}.resultCard{flex-direction:column}.resultCard img{width:100%;height:180px}.inputBox{flex-wrap:wrap}.inputBox input{flex-basis:100%;padding:8px 0}}
-.dlBtn{display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;padding:14px;border-radius:13px;font-weight:800;font-size:13px;transition:.2s;color:var(--bg);background:var(--text);cursor:pointer;border:none;width:100%}
+.dlBtn{display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;padding:14px;border-radius:13px;font-weight:800;font-size:13px;transition:.2s;color:#fff;background:linear-gradient(135deg,#a855f7,#7c3aed);cursor:pointer;border:none;width:100%}
 .dlBtn:active{transform:scale(.97)}
 .dlBtn.outline{background:transparent;border:1px solid var(--border);color:var(--text)}
 audio{width:100%;margin-top:12px}
@@ -104,9 +104,9 @@ footer{text-align:center;color:var(--muted2);font-size:11px;margin-top:28px;line
   </div>
 
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px">
-    <div class="feat"><i class="fa-solid fa-bolt" style="font-size:20px"></i><p style="font-size:12px;margin-top:8px;font-weight:700">Super Cepat</p><p style="font-size:11px;color:var(--muted)">Server Tama-ID</p></div>
-    <div class="feat" style="background:var(--text);color:var(--bg)"><i class="fa-solid fa-shield-halved" style="font-size:20px"></i><p style="font-size:12px;margin-top:8px;font-weight:700">No Watermark</p><p style="font-size:11px;opacity:.7">Bersih & HD</p></div>
-    <div class="feat"><i class="fa-solid fa-photo-film" style="font-size:20px"></i><p style="font-size:12px;margin-top:8px;font-weight:700">Masuk Galeri</p><p style="font-size:11px;color:var(--muted)">Blob Download</p></div>
+    <div class="feat"><i class="fa-solid fa-bolt" style="font-size:20px;color:#a855f7"></i><p style="font-size:12px;margin-top:8px;font-weight:700">Super Cepat</p><p style="font-size:11px;color:var(--muted)">Server Tama-ID</p></div>
+    <div class="feat" style="background:linear-gradient(135deg,#a855f7,#7c3aed);color:#fff;border-color:#a855f7"><i class="fa-solid fa-shield-halved" style="font-size:20px"></i><p style="font-size:12px;margin-top:8px;font-weight:700">No Watermark</p><p style="font-size:11px;opacity:.8">Bersih & HD</p></div>
+    <div class="feat"><i class="fa-solid fa-photo-film" style="font-size:20px;color:#a855f7"></i><p style="font-size:12px;margin-top:8px;font-weight:700">Masuk Galeri</p><p style="font-size:11px;color:var(--muted)">Blob Download</p></div>
   </div>
   <footer>All-In-One Downloader<br>Author: <b style="color:var(--text)">Tama-ID</b> • © 2026 Tama-ID • All Rights Reserved</footer>
 </div>
@@ -135,13 +135,13 @@ function toggleTheme() {
 applyTheme(safeStorageGet("tama-theme") === "light");
 
 const PLATFORMS = [
-  {id:"tiktok", name:"TikTok", icon:"fa-brands fa-tiktok", api:"https://api.nexadev.my.id/api/snaptik/?url=", example:"https://vt.tiktok.com/ZSXXAnbkc/", hint:"Link TikTok video", hosts:["tiktok.com"]},
-  {id:"instagram", name:"Instagram", icon:"fa-brands fa-instagram", api:"https://api.nexadev.my.id/api/sanapsave?url=", example:"https://www.instagram.com/p/DfvoTYkSoqa/", hint:"Link IG Post / Reels", hosts:["instagram.com"]},
-  {id:"spotify", name:"Spotify", icon:"fa-brands fa-spotify", api:"https://api.nexadev.my.id/api/spotify?url=", example:"https://open.spotify.com/track/5vQSU3pxA9atqN6zMrcTU7", hint:"Link Spotify Track", hosts:["spotify.com"]},
-  {id:"apple", name:"Apple Music", icon:"fa-brands fa-apple", api:"https://api.nexadev.my.id/api/applemusic?url=", example:"https://music.apple.com/us/song/unholy-confessions/898356745", hint:"Link Apple Music", hosts:["apple.com"]},
-  {id:"capcut", name:"CapCut", icon:"fa-solid fa-scissors", api:"https://api.nexadev.my.id/api/capcut?url=", example:"https://www.capcut.com/tv2/ZSXXSAX2q/", hint:"Link CapCut Template", hosts:["capcut.com"]},
-  {id:"pinterest", name:"Pinterest", icon:"fa-brands fa-pinterest", api:"https://api.nexadev.my.id/api/pin?url=", example:"https://pin.it/5TJ3CCrNF", hint:"Link Pinterest", hosts:["pinterest.com","pin.it"]},
-  {id:"mediafire", name:"MediaFire", icon:"fa-solid fa-file-zipper", api:"https://api.nexadev.my.id/api/mediafire?url=", example:"https://www.mediafire.com/file/v7rlj8ngxj1621f/Nexa_Bot_v1.0.0.zip/file", hint:"Link MediaFire", hosts:["mediafire.com"]}
+  {id:"tiktok", name:"TikTok", icon:"fa-brands fa-tiktok", color:"#FE2C55", api:"https://api.nexadev.my.id/api/snaptik/?url=", example:"https://vt.tiktok.com/ZSXXAnbkc/", hint:"Link TikTok video", hosts:["tiktok.com"]},
+  {id:"instagram", name:"Instagram", icon:"fa-brands fa-instagram", color:"#E1306C", api:"https://api.nexadev.my.id/api/sanapsave?url=", example:"https://www.instagram.com/p/DfvoTYkSoqa/", hint:"Link IG Post / Reels", hosts:["instagram.com"]},
+  {id:"spotify", name:"Spotify", icon:"fa-brands fa-spotify", color:"#1DB954", api:"https://api.nexadev.my.id/api/spotify?url=", example:"https://open.spotify.com/track/5vQSU3pxA9atqN6zMrcTU7", hint:"Link Spotify Track", hosts:["spotify.com"]},
+  {id:"apple", name:"Apple Music", icon:"fa-brands fa-apple", color:"#D4D4D4", api:"https://api.nexadev.my.id/api/applemusic?url=", example:"https://music.apple.com/us/song/unholy-confessions/898356745", hint:"Link Apple Music", hosts:["apple.com"]},
+  {id:"capcut", name:"CapCut", icon:"fa-solid fa-scissors", color:"#FFFFFF", api:"https://api.nexadev.my.id/api/capcut?url=", example:"https://www.capcut.com/tv2/ZSXXSAX2q/", hint:"Link CapCut Template", hosts:["capcut.com"]},
+  {id:"pinterest", name:"Pinterest", icon:"fa-brands fa-pinterest", color:"#E60023", api:"https://api.nexadev.my.id/api/pin?url=", example:"https://pin.it/5TJ3CCrNF", hint:"Link Pinterest", hosts:["pinterest.com","pin.it"]},
+  {id:"mediafire", name:"MediaFire", icon:"fa-solid fa-file-zipper", color:"#1299F3", api:"https://api.nexadev.my.id/api/mediafire?url=", example:"https://www.mediafire.com/file/v7rlj8ngxj1621f/Nexa_Bot_v1.0.0.zip/file", hint:"Link MediaFire", hosts:["mediafire.com"]}
 ];
 
 let active = PLATFORMS[0];
@@ -204,7 +204,7 @@ PLATFORMS.forEach((platform) => {
   button.type = "button";
   button.className = "tab" + (platform.id === active.id ? " active" : "");
   button.dataset.platform = platform.id;
-  button.innerHTML = `<i class="${escapeHTML(platform.icon)}"></i> ${escapeHTML(platform.name)}`;
+  button.innerHTML = `<i class="${escapeHTML(platform.icon)}" style="color:${platform.color}"></i> ${escapeHTML(platform.name)}`;
   button.addEventListener("click", () => selectPlatform(platform));
   tabsEl.appendChild(button);
 });
